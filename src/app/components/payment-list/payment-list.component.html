@@ -8,22 +8,24 @@
         style="display: none"
         accept=".csv"
         (change)="onFileUpload($event)"
-      >
-      <button 
-        mat-raised-button 
-        color="accent" 
+      />
+      <button
+        mat-raised-button
+        color="accent"
         (click)="fileInput.click()"
         [disabled]="loading"
-        class="upload-btn">
+        class="upload-btn"
+      >
         <mat-icon>upload</mat-icon>
         Upload CSV
       </button>
-      
-      <button 
-        mat-raised-button 
-        color="primary" 
+
+      <button
+        mat-raised-button
+        color="primary"
         (click)="openPaymentForm()"
-        [disabled]="loading">
+        [disabled]="loading"
+      >
         Add Payment
       </button>
     </div>
@@ -32,7 +34,11 @@
   <div class="filters">
     <mat-form-field>
       <mat-label>Search</mat-label>
-      <input matInput (keyup)="onSearch($event)" placeholder="Search payments...">
+      <input
+        matInput
+        (keyup)="onSearch($event)"
+        placeholder="Search payments..."
+      />
     </mat-form-field>
   </div>
 
@@ -50,7 +56,7 @@
         <ng-container matColumnDef="payee_name">
           <th mat-header-cell *matHeaderCellDef>Payee Name</th>
           <td mat-cell *matCellDef="let payment">
-            {{payment.payee_first_name}} {{payment.payee_last_name}}
+            {{ payment.payee_first_name }} {{ payment.payee_last_name }}
           </td>
         </ng-container>
 
@@ -58,7 +64,7 @@
           <th mat-header-cell *matHeaderCellDef>Status</th>
           <td mat-cell *matCellDef="let payment">
             <span [class]="'status-badge ' + payment.payee_payment_status">
-              {{payment.payee_payment_status}}
+              {{ payment.payee_payment_status }}
             </span>
           </td>
         </ng-container>
@@ -66,44 +72,58 @@
         <ng-container matColumnDef="payee_due_date">
           <th mat-header-cell *matHeaderCellDef>Due Date</th>
           <td mat-cell *matCellDef="let payment">
-            {{payment.payee_due_date | date:'MMM dd, yyyy'}}
+            {{ payment.payee_due_date | date : "MMM dd, yyyy" }}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="total_due">
           <th mat-header-cell *matHeaderCellDef>Total Due</th>
           <td mat-cell *matCellDef="let payment">
-            {{payment.total_due | number:'1.2-2'}} {{payment.currency}}
+            {{ payment.total_due | number : "1.2-2" }} {{ payment.currency }}
           </td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let payment">
-            <button mat-icon-button (click)="openPaymentForm(payment)" matTooltip="Edit">
+            <button
+              mat-icon-button
+              (click)="openPaymentForm(payment)"
+              matTooltip="Edit"
+            >
               <mat-icon>edit</mat-icon>
             </button>
-            <a mat-icon-button 
-               *ngIf="payment.evidence_file"
-               [href]="payment.evidence_file"
-               target="_blank"
-               matTooltip="Download Evidence">
+            <button
+              mat-icon-button
+              (click)="deletePayment(payment._id)"
+              matTooltip="Delete"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+            <a
+              mat-icon-button
+              *ngIf="payment.evidence_file"
+              [href]="payment.evidence_file"
+              target="_blank"
+              matTooltip="Download Evidence"
+            >
               <mat-icon>download</mat-icon>
             </a>
           </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
 
       <mat-paginator
         [length]="totalItems"
         [pageSize]="filter.limit"
-        [pageSizeOptions]="[5, 10, 25, 100,1000]"
+        [pageSizeOptions]="[5, 10, 25, 100, 1000]"
         [pageIndex]="filter.page - 1"
-        (page)="onPageChange($event)">
+        (page)="onPageChange($event)"
+      >
       </mat-paginator>
     </ng-container>
   </div>
-</div> 
+</div>
