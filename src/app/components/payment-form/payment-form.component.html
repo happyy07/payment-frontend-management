@@ -1,0 +1,98 @@
+<form [formGroup]="paymentForm" >
+  <h2 mat-dialog-title>Edit Payment</h2>
+
+  <mat-dialog-content>
+    <div class="form-grid">
+      <!-- Read-only Information -->
+      <div class="readonly-section">
+        <h3>Payee Information</h3>
+        <p>
+          <strong>Name:</strong> {{ data.payee_first_name }}
+          {{ data.payee_last_name }}
+        </p>
+        <p><strong>Email:</strong> {{ data.payee_email }}</p>
+        <p><strong>Phone:</strong> {{ data.payee_phone_number }}</p>
+        <p><strong>Address:</strong> {{ data.payee_address_line_1 }}</p>
+        <p *ngIf="data.payee_address_line_2">
+          <strong>Address 2:</strong> {{ data.payee_address_line_2 }}
+        </p>
+        <p>
+          <strong>Location:</strong> {{ data.payee_city }},
+          {{ data.payee_province_or_state }}, {{ data.payee_country }}
+        </p>
+        <p><strong>Postal Code:</strong> {{ data.payee_postal_code }}</p>
+      </div>
+
+      <!-- Editable Fields -->
+      <div class="editable-section">
+        <h3>Payment Details</h3>
+        <mat-form-field>
+          <mat-label>Payment Status</mat-label>
+          <mat-select formControlName="payee_payment_status">
+            <mat-option value="pending">Pending</mat-option>
+            <mat-option value="due_now">Due Now</mat-option>
+            <mat-option value="completed">Completed</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Due Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="payee_due_date"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Due Amount</mat-label>
+          <input matInput type="number" formControlName="due_amount" />
+        </mat-form-field>
+
+        <!-- Evidence File Upload -->
+        <div *ngIf="!isCompleted">
+          <input
+            type="file"
+            (change)="onFileSelected($event)"
+            accept=".pdf,.png,.jpg,.jpeg"
+          />
+          <small class="text-warning" *ngIf="!selectedFile"
+            >Evidence file is required for completed payments</small
+          >
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <div class="flex justify-content-end">
+    <button
+      *ngIf="!isCompleted"
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="paymentForm.invalid || isLoading"
+      (click)="onSubmit()"
+    >
+      <mat-spinner diameter="20" *ngIf="isLoading"></mat-spinner>
+      Save
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="isCompleted && data?.evidence_file_id"
+      color="primary"
+      (click)="downloadEvidence()"
+      style="margin-right: 8px"
+    >
+      <mat-icon>download</mat-icon>
+      Download Evidence
+    </button>
+    <button mat-button (click)="onCancel()" style="margin-right: 8px">
+      Cancel
+    </button>
+  </div>
+</form>

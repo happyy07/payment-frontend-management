@@ -1,0 +1,78 @@
+.payment-list-container {
+  padding: 20px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    &-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+  }
+
+  .filters {
+    margin-bottom: 20px;
+  }
+
+  .table-container {
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    min-height: 200px;
+
+    table {
+      width: 100%;
+    }
+  }
+
+  .status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    text-transform: uppercase;
+
+    &.completed {
+      background: #4caf50;
+      color: white;
+    }
+
+    &.due_now {
+      background: #ff9800;
+      color: white;
+    }
+
+    &.overdue {
+      background: #f44336;
+      color: white;
+    }
+
+    &.pending {
+      background: #9e9e9e;
+      color: white;
+    }
+  }
+
+  .upload-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .error-message {
+    color: #f44336;
+    text-align: center;
+    padding: 20px;
+  }
+} 
