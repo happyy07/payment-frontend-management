@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class PaymentService {
-  private apiUrl = 'http://localhost:8000'; // adjust based on your backend URL
+  private apiUrl = 'https://76a7-74-12-114-233.ngrok-free.app'; // adjust based on your backend URL
 
   constructor(private http: HttpClient) {}
 
