@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class PaymentService {
-  private apiUrl = 'https://76a7-74-12-114-233.ngrok-free.app'; // adjust based on your backend URL
+  private apiUrl = 'https://payment-backend-management.vercel.app'; // adjust based on your backend URL
 
   constructor(private http: HttpClient) {}
 
