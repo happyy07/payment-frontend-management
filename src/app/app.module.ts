@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatToolbarModule } from "@angular/material/toolbar";
 
@@ -31,7 +31,8 @@ import { PaymentFormComponent } from "./components/payment-form/payment-form.com
 import { PaymentAddComponent } from "./components/payment-add/payment-add.component";
 import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register-component/register-component.component";
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from "./components/home/home.component";
+import { AuthInterceptor } from "./guard/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -66,7 +67,10 @@ import { HomeComponent } from './components/home/home.component';
     CalendarModule,
     ToastModule,
   ],
-  providers: [MessageService],
+  providers: [
+    MessageService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

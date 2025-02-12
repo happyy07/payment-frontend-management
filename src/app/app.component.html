@@ -5,7 +5,16 @@
   </div>
   <div class="spacer"></div>
   <div class="right-buttons">
-    <button mat-button routerLink="/login">Login</button>
+    <button
+      *ngIf="!authService.isAuthenticated()"
+      mat-button
+      routerLink="/login"
+    >
+      Login
+    </button>
+    <button *ngIf="authService.isAuthenticated()" mat-button (click)="logout()">
+      Logout
+    </button>
   </div>
 </mat-toolbar>
 <router-outlet></router-outlet>
