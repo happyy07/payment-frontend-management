@@ -1,0 +1,39 @@
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  h2 {
+    margin: 20px 0px;
+  }
+
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+
+    mat-form-field {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .login-link {
+    margin-top: 15px;
+    font-size: 14px;
+
+    a {
+      text-decoration: none;
+      color: #3f51b5;
+      font-weight: 500;
+    }
+  }
+}

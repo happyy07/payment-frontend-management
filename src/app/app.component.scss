@@ -1,0 +1,18 @@
+.app-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-buttons,
+.right-buttons {
+  display: flex;
+  font-size: 20px;
+
+  button {
+    font-size: 20px;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

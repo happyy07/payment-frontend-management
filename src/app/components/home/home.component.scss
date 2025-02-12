@@ -1,0 +1,46 @@
+.home-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 2em;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      font-size: 1.1em;
+      margin-bottom: 10px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: "✔️";
+        margin-right: 10px;
+        color: green;
+      }
+
+      strong {
+        margin-right: 5px;
+      }
+    }
+  }
+}

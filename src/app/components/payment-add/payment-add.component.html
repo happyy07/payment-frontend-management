@@ -1,28 +1,32 @@
 <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
   <h2 mat-dialog-title>Add New Payment</h2>
-  
+
   <mat-dialog-content>
     <div class="form-grid">
       <!-- Personal Information -->
       <mat-form-field>
         <mat-label>First Name</mat-label>
-        <input matInput formControlName="payee_first_name">
-        <mat-error *ngIf="paymentForm.get('payee_first_name')?.hasError('required')">
+        <input matInput formControlName="payee_first_name" />
+        <mat-error
+          *ngIf="paymentForm.get('payee_first_name')?.hasError('required')"
+        >
           First name is required.
         </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Last Name</mat-label>
-        <input matInput formControlName="payee_last_name">
-        <mat-error *ngIf="paymentForm.get('payee_last_name')?.hasError('required')">
+        <input matInput formControlName="payee_last_name" />
+        <mat-error
+          *ngIf="paymentForm.get('payee_last_name')?.hasError('required')"
+        >
           Last name is required.
         </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Email</mat-label>
-        <input matInput formControlName="payee_email" type="email">
+        <input matInput formControlName="payee_email" type="email" />
         <mat-error *ngIf="paymentForm.get('payee_email')?.hasError('required')">
           Email is required.
         </mat-error>
@@ -33,11 +37,19 @@
 
       <mat-form-field>
         <mat-label>Phone Number</mat-label>
-        <input matInput formControlName="payee_phone_number" placeholder="+1234567890">
-        <mat-error *ngIf="paymentForm.get('payee_phone_number')?.hasError('required')">
+        <input
+          matInput
+          formControlName="payee_phone_number"
+          placeholder="+1234567890"
+        />
+        <mat-error
+          *ngIf="paymentForm.get('payee_phone_number')?.hasError('required')"
+        >
           Phone number is required.
         </mat-error>
-        <mat-error *ngIf="paymentForm.get('payee_phone_number')?.hasError('pattern')">
+        <mat-error
+          *ngIf="paymentForm.get('payee_phone_number')?.hasError('pattern')"
+        >
           Phone number must be in E.164 format (e.g., +1234567890).
         </mat-error>
       </mat-form-field>
@@ -45,46 +57,60 @@
       <!-- Address Information -->
       <mat-form-field>
         <mat-label>Address Line 1</mat-label>
-        <input matInput formControlName="payee_address_line_1">
-        <mat-error *ngIf="paymentForm.get('payee_address_line_1')?.hasError('required')">
+        <input matInput formControlName="payee_address_line_1" />
+        <mat-error
+          *ngIf="paymentForm.get('payee_address_line_1')?.hasError('required')"
+        >
           Address Line 1 is required.
         </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Address Line 2</mat-label>
-        <input matInput formControlName="payee_address_line_2">
+        <input matInput formControlName="payee_address_line_2" />
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Country</mat-label>
         <mat-select formControlName="payee_country">
           <mat-option *ngFor="let country of countries" [value]="country.code">
-            {{country.name}}
+            {{ country.name }}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="paymentForm.get('payee_country')?.hasError('required')">
+        <mat-error
+          *ngIf="paymentForm.get('payee_country')?.hasError('required')"
+        >
           Country is required.
         </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>State/Province</mat-label>
-        <mat-select formControlName="payee_province_or_state" [disabled]="!paymentForm.get('payee_country')?.value">
+        <mat-select
+          formControlName="payee_province_or_state"
+          [disabled]="!paymentForm.get('payee_country')?.value"
+        >
           <mat-option *ngFor="let state of states" [value]="state">
-            {{state}}
+            {{ state }}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="paymentForm.get('payee_province_or_state')?.hasError('required')">
+        <mat-error
+          *ngIf="
+            paymentForm.get('payee_province_or_state')?.hasError('required')
+          "
+        >
           State/Province is required.
         </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>City</mat-label>
-        <mat-select formControlName="payee_city" [disabled]="!paymentForm.get('payee_province_or_state')?.value">
+        <mat-select
+          formControlName="payee_city"
+          [disabled]="!paymentForm.get('payee_province_or_state')?.value"
+        >
           <mat-option *ngFor="let city of cities" [value]="city">
-            {{city}}
+            {{ city }}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="paymentForm.get('payee_city')?.hasError('required')">
@@ -94,11 +120,15 @@
 
       <mat-form-field>
         <mat-label>Postal Code</mat-label>
-        <input matInput formControlName="payee_postal_code">
-        <mat-error *ngIf="paymentForm.get('payee_postal_code')?.hasError('required')">
+        <input matInput formControlName="payee_postal_code" />
+        <mat-error
+          *ngIf="paymentForm.get('payee_postal_code')?.hasError('required')"
+        >
           Postal code is required.
         </mat-error>
-        <mat-error *ngIf="paymentForm.get('payee_postal_code')?.hasError('pattern')">
+        <mat-error
+          *ngIf="paymentForm.get('payee_postal_code')?.hasError('pattern')"
+        >
           Please enter a valid postal code.
         </mat-error>
       </mat-form-field>
@@ -106,7 +136,7 @@
       <!-- Payment Information -->
       <mat-form-field>
         <mat-label>Currency</mat-label>
-        <input matInput formControlName="currency">
+        <input matInput formControlName="currency" />
         <mat-error *ngIf="paymentForm.get('currency')?.hasError('required')">
           Currency is required.
         </mat-error>
@@ -114,7 +144,7 @@
 
       <mat-form-field>
         <mat-label>Due Amount</mat-label>
-        <input matInput type="number" formControlName="due_amount">
+        <input matInput type="number" formControlName="due_amount" />
         <mat-error *ngIf="paymentForm.get('due_amount')?.hasError('required')">
           Due amount is required.
         </mat-error>
@@ -125,20 +155,33 @@
 
       <mat-form-field>
         <mat-label>Discount Percent</mat-label>
-        <input matInput type="number" formControlName="discount_percent">
+        <input matInput type="number" formControlName="discount_percent" />
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Tax Percent</mat-label>
-        <input matInput type="number" formControlName="tax_percent">
+        <input matInput type="number" formControlName="tax_percent" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Payment Status</mat-label>
+        <mat-select formControlName="payee_payment_status">
+          <mat-option value="pending">Pending</mat-option>
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Due Date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="payee_due_date">
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="payee_due_date"
+        />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="paymentForm.get('payee_due_date')?.hasError('required')">
+        <mat-error
+          *ngIf="paymentForm.get('payee_due_date')?.hasError('required')"
+        >
           Due date is required.
         </mat-error>
       </mat-form-field>
@@ -147,9 +190,14 @@
 
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-raised-button color="primary" type="submit" [disabled]="paymentForm.invalid || isLoading">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="paymentForm.invalid || isLoading"
+    >
       <mat-spinner diameter="20" *ngIf="isLoading"></mat-spinner>
       Create
     </button>
   </mat-dialog-actions>
-</form> 
+</form>
