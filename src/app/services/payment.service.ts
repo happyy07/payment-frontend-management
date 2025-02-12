@@ -8,7 +8,7 @@ import { map } from "rxjs/operators";
   providedIn: "root",
 })
 export class PaymentService {
-  private apiUrl = "http://localhost:5000"; // adjust based on your backend URL
+  private apiUrl = "https://payment-backend-management.onrender.com"; // adjust based on your backend URL
 
   constructor(private http: HttpClient) {}
 
