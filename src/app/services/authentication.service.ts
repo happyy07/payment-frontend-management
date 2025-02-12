@@ -12,7 +12,10 @@ export class AuthenticationService {
   private isLoggedIn = false;
   token: string | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.token = localStorage.getItem("token");
+    this.isLoggedIn = !!this.token;
+  }
 
   createUser(userData: User): Observable<any> {
     return this.http.post(`${this.apiUrl}/users/createUser`, userData);
@@ -53,6 +56,7 @@ export class AuthenticationService {
   }
 
   isAuthenticated(): boolean {
+    console.log("isAuthenticated=>", this.isLoggedIn);
     return this.isLoggedIn;
   }
 }
