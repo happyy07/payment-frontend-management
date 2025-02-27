@@ -8,7 +8,9 @@ import { map, catchError } from "rxjs/operators";
   providedIn: "root",
 })
 export class AuthenticationService {
-  private apiUrl = "http://localhost:5000";
+  // private apiUrl = "http://localhost:5000";
+  private apiUrl = "http://99.79.79.217:5000";
+
   private isLoggedIn = false;
   token: string | null = null;
 
